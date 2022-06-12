@@ -2,6 +2,7 @@ const CONTAINER_WIDTH = 960;
 const INIT_SQUARE_WIDTH = 40;
 const INIT_SQUARE_HEIGHT = 40;
 const INIT_GRID_SIZE = 16;
+let randomMode = false;
 
 window.onload = init;
 
@@ -29,7 +30,15 @@ function createSquare() {
 }
 
 function onMouseEnterSquare(e) {
-  e.target.style.backgroundColor = "red";
+  if (!randomMode) e.target.style.backgroundColor = "red";
+  else if (e.target.style.backgroundColor == "") {
+    e.target.style.backgroundColor = `${getRandomRGB()}`;
+  }
+}
+
+function getRandomRGB() {
+  let getRandomValue = () => Math.floor(Math.random() * 255) + 1;
+  return `rgb(${getRandomValue()},${getRandomValue()},${getRandomValue()})`;
 }
 
 function setSquareDimensions(square, size) {
@@ -50,4 +59,8 @@ function changeGridSize() {
 function emptyGrid() {
   const container = document.querySelector(".container");
   container.textContent = "";
+}
+
+function activateRandomMode() {
+  randomMode = true;
 }
