@@ -5,28 +5,37 @@ container.classList.add("container");
 
 body.appendChild(container);
 
-for (let i = 0; i < 16 * 16; i++) {
-  const square = document.createElement("div");
-  square.classList.add("square");
-  square.style.height = "60px";
-  square.style.width = "60px";
-
-  square.addEventListener("mouseenter", onMouseEnter);
-  container.appendChild(square);
-}
+generateGrid(16);
 
 function changeResolution() {
   let newSize = +prompt("Enter new grid size (max: 100)");
-  console.log(newSize);
+  emptyGrid();
+  generateGrid(newSize);
+}
+
+function emptyGrid() {
   container.textContent = "";
-  for (let i = 0; i < newSize * newSize; i++) {
-    const square = document.createElement("div");
-    square.classList.add("square");
-    const squareSize = 960 / newSize;
-    square.style.height = `${squareSize}px`;
-    square.style.width = `${squareSize}px`;
-    container.appendChild(square);
+}
+
+function generateGrid(size) {
+  for (let i = 0; i < size * size; i++) {
+    const square = createSquare();
+    setSquareDimensions(square, size);
   }
+}
+
+function createSquare() {
+  const square = document.createElement("div");
+  square.classList.add("square");
+  square.addEventListener("mouseenter", onMouseEnter);
+  container.appendChild(square);
+  return square;
+}
+
+function setSquareDimensions(square, size) {
+  const squareSize = 960 / size;
+  square.style.height = `${squareSize}px`;
+  square.style.width = `${squareSize}px`;
 }
 
 function onMouseEnter(e) {
