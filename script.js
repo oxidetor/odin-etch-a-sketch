@@ -19,10 +19,11 @@ function generateGrid(size) {
 }
 
 function createSquare() {
-  const container = document.querySelector(".container");
   const square = document.createElement("div");
   square.classList.add("square");
   square.addEventListener("mouseenter", onMouseEnterSquare);
+
+  const container = document.querySelector(".container");
   container.appendChild(square);
   return square;
 }
@@ -38,9 +39,12 @@ function setSquareDimensions(square, size) {
 }
 
 function changeGridSize() {
-  let newSize = +prompt("Enter new grid size (max: 100)");
+  let newGridSize;
+  do {
+    newGridSize = +prompt("Enter new grid size (max: 100)");
+  } while (newGridSize < 1 || newGridSize > 100);
   emptyGrid();
-  generateGrid(newSize);
+  generateGrid(newGridSize);
 }
 
 function emptyGrid() {
