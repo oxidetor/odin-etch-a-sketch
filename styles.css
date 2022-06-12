@@ -1,5 +1,7 @@
 body {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 80vh;
 }
 
@@ -7,13 +9,11 @@ body {
   display: flex;
   margin: auto;
   flex-flow: row wrap;
-  width: 640px;
+  width: 960px;
   border: 2px solid red;
 }
 
 .square {
-  width: 40px;
-  height: 40px;
   border: 1px solid black;
   box-sizing: border-box;
   text-align: center;
