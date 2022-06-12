@@ -10,6 +10,8 @@ for (let i = 0; i < 16 * 16; i++) {
   square.classList.add("square");
   square.style.height = "60px";
   square.style.width = "60px";
+
+  square.addEventListener("mouseenter", onMouseEnter);
   container.appendChild(square);
 }
 
@@ -25,4 +27,8 @@ function changeResolution() {
     square.style.width = `${squareSize}px`;
     container.appendChild(square);
   }
+}
+
+function onMouseEnter(e) {
+  e.target.style.backgroundColor = "red";
 }

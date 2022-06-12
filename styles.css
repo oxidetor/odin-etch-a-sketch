@@ -21,7 +21,3 @@ body {
   flex-shrink: 0;
   color: grey;
 }
-
-.square:hover {
-  background-color: red;
-}
