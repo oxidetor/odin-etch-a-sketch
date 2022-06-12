@@ -29,6 +29,12 @@ function createSquare() {
   return square;
 }
 
+function setSquareDimensions(square, size) {
+  const squareSize = CONTAINER_WIDTH / size;
+  square.style.height = `${squareSize}px`;
+  square.style.width = `${squareSize}px`;
+}
+
 function onMouseEnterSquare(e) {
   let square = e.target;
 
@@ -64,12 +70,6 @@ function darkenSquareRandomMode(square) {
 function getRandomRGB() {
   let getRandomValue = () => Math.floor(Math.random() * 255) + 1;
   return `rgb(${getRandomValue()},${getRandomValue()},${getRandomValue()})`;
-}
-
-function setSquareDimensions(square, size) {
-  const squareSize = CONTAINER_WIDTH / size;
-  square.style.height = `${squareSize}px`;
-  square.style.width = `${squareSize}px`;
 }
 
 function changeGridSize() {
