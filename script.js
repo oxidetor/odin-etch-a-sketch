@@ -30,16 +30,18 @@ function createSquare() {
 }
 
 function onMouseEnterSquare(e) {
+  let square = e.target;
   let currentBackgroundColor = e.target.style.backgroundColor;
 
   if (!randomMode) {
-    e.target.style.backgroundColor = "red";
+    square.style.backgroundColor = "red";
+    square.style.filter = `brightness(1)`;
   } else if (currentBackgroundColor == "") {
-    e.target.style.backgroundColor = `${getRandomRGB()}`;
-    e.target.style.filter = `brightness(1)`;
+    square.style.backgroundColor = `${getRandomRGB()}`;
+    square.style.filter = `brightness(1)`;
   } else {
-    let currentBrightness = +e.target.style.filter.replace(/[^\d\.]+/g, "");
-    e.target.style.filter = `brightness(${
+    let currentBrightness = +square.style.filter.replace(/[^\d\.]+/g, "");
+    square.style.filter = `brightness(${
       currentBrightness == 0 ? "0" : currentBrightness - 0.1
     })`;
   }
