@@ -31,20 +31,34 @@ function createSquare() {
 
 function onMouseEnterSquare(e) {
   let square = e.target;
-  let currentBackgroundColor = e.target.style.backgroundColor;
 
   if (!randomMode) {
-    square.style.backgroundColor = "red";
-    square.style.filter = `brightness(1)`;
-  } else if (currentBackgroundColor == "") {
-    square.style.backgroundColor = `${getRandomRGB()}`;
-    square.style.filter = `brightness(1)`;
+    // normal mode
+    colorSquareNormalMode(square);
+  } else if (square.style.backgroundColor == "") {
+    // square not colored
+    colorSquareRandomMode(square);
   } else {
-    let currentBrightness = +square.style.filter.replace(/[^\d\.]+/g, "");
-    square.style.filter = `brightness(${
-      currentBrightness == 0 ? "0" : currentBrightness - 0.1
-    })`;
+    // square already has a color
+    darkenSquareRandomMode(square);
   }
+}
+
+function colorSquareNormalMode(square) {
+  square.style.backgroundColor = "red";
+  square.style.filter = `brightness(1)`;
+}
+
+function colorSquareRandomMode(square) {
+  square.style.backgroundColor = `${getRandomRGB()}`;
+  square.style.filter = `brightness(1)`;
+}
+
+function darkenSquareRandomMode(square) {
+  let currentBrightness = +square.style.filter.replace(/[^\d\.]+/g, "");
+  square.style.filter = `brightness(${
+    currentBrightness == 0 ? "0" : currentBrightness - 0.1
+  })`;
 }
 
 function getRandomRGB() {
@@ -72,6 +86,6 @@ function emptyGrid() {
   container.textContent = "";
 }
 
-function activateRandomMode() {
-  randomMode = true;
+function toggleRandomMode() {
+  randomMode = !randomMode;
 }
