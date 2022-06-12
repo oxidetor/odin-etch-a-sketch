@@ -30,9 +30,18 @@ function createSquare() {
 }
 
 function onMouseEnterSquare(e) {
-  if (!randomMode) e.target.style.backgroundColor = "red";
-  else if (e.target.style.backgroundColor == "") {
+  let currentBackgroundColor = e.target.style.backgroundColor;
+
+  if (!randomMode) {
+    e.target.style.backgroundColor = "red";
+  } else if (currentBackgroundColor == "") {
     e.target.style.backgroundColor = `${getRandomRGB()}`;
+    e.target.style.filter = `brightness(1)`;
+  } else {
+    let currentBrightness = +e.target.style.filter.replace(/[^\d\.]+/g, "");
+    e.target.style.filter = `brightness(${
+      currentBrightness == 0 ? "0" : currentBrightness - 0.1
+    })`;
   }
 }
 
